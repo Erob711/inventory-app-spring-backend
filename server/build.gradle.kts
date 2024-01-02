@@ -20,6 +20,7 @@ repositories {
 dependencies {
     api(libs.org.springframework.boot.spring.boot.starter.data.jdbc)
     api(libs.org.springframework.boot.spring.boot.starter.web)
+    implementation("org.springframework.data:spring-data-jpa:3.2.1")
     api(libs.org.hibernate.orm.hibernate.core)
     runtimeOnly(libs.org.springframework.boot.spring.boot.devtools)
     runtimeOnly(libs.org.postgresql.postgresql)

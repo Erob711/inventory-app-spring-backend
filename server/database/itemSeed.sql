@@ -1,7 +1,7 @@
 BEGIN TRANSACTION;
 
 
-INSERT INTO public.items(
+INSERT INTO public.item(
 	name, price, description, category, image)
 	VALUES (
 	  'Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops',
@@ -10,7 +10,7 @@ INSERT INTO public.items(
 	  E'men\'s clothing',
 	  'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg');
 
-INSERT INTO public.items(
+INSERT INTO public.item(
 	name, price, description, category, image)
 	VALUES (
 	  'Mens Casual Premium Slim Fit T-Shirts ',

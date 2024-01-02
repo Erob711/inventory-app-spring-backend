@@ -1,28 +1,26 @@
-package com.inventoryapp.inventoryapp.model;
+package com.inventoryapp.models;
 
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+
+@Entity(name="item")
 public class Item {
-    private int id;
+
+    @Id
+    @GeneratedValue
+    private Integer id;
     private String name;
     private double price;
     private String description;
     private String category;
 
-    public Item() {
-
-    }
-    public Item(int id, String name, double price, String description, String category) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.description = description;
-        this.category = category;
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
