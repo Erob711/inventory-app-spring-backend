@@ -33,6 +33,6 @@ build/
 .vscode/
 
 ### Gradle ###
-.gradle
+.gradle/
 !gradle-wrapper.jar
 .gradletasknamecache
