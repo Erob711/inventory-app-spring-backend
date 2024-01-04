@@ -17,7 +17,7 @@ public class Item {
     private double price;
     private String description;
     private String category;
-
+    private String image;
     public Integer getId() {
         return id;
     }
@@ -56,5 +56,13 @@ public class Item {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
