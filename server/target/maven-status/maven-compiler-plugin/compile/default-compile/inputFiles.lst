@@ -1,0 +1,5 @@
+/Users/ericroberson/Projects/SpringBoot/inventory-app-spring-backend/server/src/main/java/com/inventoryapp/inventoryapp/dao/JdbcItemDao.java
+/Users/ericroberson/Projects/SpringBoot/inventory-app-spring-backend/server/src/main/java/com/inventoryapp/inventoryapp/model/Item.java
+/Users/ericroberson/Projects/SpringBoot/inventory-app-spring-backend/server/src/main/java/com/inventoryapp/inventoryapp/dao/ItemDao.java
+/Users/ericroberson/Projects/SpringBoot/inventory-app-spring-backend/server/src/main/java/com/inventoryapp/inventoryapp/controller/ItemController.java
+/Users/ericroberson/Projects/SpringBoot/inventory-app-spring-backend/server/src/main/java/com/inventoryapp/inventoryapp/InventoryAppApplication.java
