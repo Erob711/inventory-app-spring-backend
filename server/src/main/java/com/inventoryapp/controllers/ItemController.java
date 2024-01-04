@@ -2,15 +2,16 @@ package com.inventoryapp.controllers;
 
 
 
+import com.inventoryapp.dtos.ItemDto;
 import com.inventoryapp.entities.Item;
-import com.inventoryapp.repositories.ItemRepository;
 import com.inventoryapp.services.ItemService;
-import jakarta.annotation.security.PermitAll;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path="/")
@@ -18,6 +19,8 @@ import java.util.Optional;
 public class ItemController {
 
 //    private final ItemDao itemDao;
+    @Autowired
+    private ModelMapper modelMapper;
     private final ItemService itemService;
     public ItemController(ItemService itemService) {
         this.itemService = itemService;
@@ -25,15 +28,17 @@ public class ItemController {
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/items")
-    public List<Item> getAll() {
-        List<Item> allItems = itemService.listAll();
-        return allItems;
+    public List<ItemDto> getAll() {
+//        List<Item> allItems = itemService.listAll();
+//        return allItems;
+        return itemService.listAll().stream().map(item ->
+                modelMapper.map(item, ItemDto.class)).collect(Collectors.toList());
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("items/{id}")
-    public Optional<Item> getById(@PathVariable Integer id) {
-        Optional <Item> item = itemService.findById(id);
+    public Item getById(@PathVariable int id) {
+        Item item = itemService.findById(id);
         return item;
     }
 
@@ -45,9 +50,10 @@ public class ItemController {
     }
 
     @ResponseStatus(HttpStatus.OK)
-    @PutMapping("/items")
-    public Item updateItem(@RequestBody Item item) {
-        Item updatedItem = itemService.saveItem(item);
+    @PutMapping("/items/{id}")
+    public Item updateItem(@PathVariable Integer id) {
+        Item itemToUpdate = itemService.findById(id);
+        Item updatedItem = itemService.saveItem(itemToUpdate);
         return updatedItem;
     }
 

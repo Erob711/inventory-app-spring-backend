@@ -19,9 +19,10 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
-    public Optional <Item> findById(Integer id) {
+    public Item findById(int id) {
         System.out.printf("id is: " + id);
-        Optional <Item> item = itemRepository.findById(id);
+        Item item = itemRepository.getReferenceById(id);
+//        Item itemFound = itemRepository.findById(id);
         System.out.println("item from item repo: " + item);
         return item;
     }
