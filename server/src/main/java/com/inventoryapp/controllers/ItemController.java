@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path="/")
@@ -26,5 +27,12 @@ public class ItemController {
     public List<Item> getAll() {
         List<Item> allItems = itemService.listAll();
         return allItems;
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("items/{id}")
+    public Optional<Item> getById(@PathVariable Integer id) {
+        Optional<Item> item = itemService.findById(id);
+        return item;
     }
 }
