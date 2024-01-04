@@ -2,7 +2,7 @@ package com.inventoryapp.controllers;
 
 
 
-import com.inventoryapp.models.Item;
+import com.inventoryapp.entities.Item;
 import com.inventoryapp.repositories.ItemRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

@@ -1,7 +1,7 @@
 package com.inventoryapp.repositories;
 
 
-import com.inventoryapp.models.Item;
+import com.inventoryapp.entities.Item;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

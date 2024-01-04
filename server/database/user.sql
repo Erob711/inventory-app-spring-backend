@@ -16,10 +16,10 @@ GRANT ALL
 ON ALL SEQUENCES IN SCHEMA public
 TO inventory_app_owner;
 
-GRANT SELECT, INSERT, UPDATE, DELETE
+GRANT ALL
 ON ALL TABLES IN SCHEMA public
 TO inventory_app_appuser;
 
-GRANT USAGE, SELECT
+GRANT ALL
 ON ALL SEQUENCES IN SCHEMA public
 TO inventory_app_appuser;

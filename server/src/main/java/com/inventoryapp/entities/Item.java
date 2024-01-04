@@ -1,11 +1,13 @@
-package com.inventoryapp.models;
+package com.inventoryapp.entities;
 
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
-@Entity(name="item")
+@Entity
+@Table(name="item")
 public class Item {
 
     @Id
