@@ -17,6 +17,8 @@ public class Item {
     private String description;
     private String category;
     private String image;
+
+
     public Integer getId() {
         return id;
     }

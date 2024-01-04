@@ -19,8 +19,30 @@ public class ItemService {
         return itemRepository.findAll();
     }
 
-    public Optional<Item> findById(Integer id) {
-        Optional<Item> item = itemRepository.findById(id);
+    public Optional <Item> findById(Integer id) {
+        System.out.printf("id is: " + id);
+        Optional <Item> item = itemRepository.findById(id);
+        System.out.println("item from item repo: " + item);
         return item;
+    }
+
+    public Item saveItem(Item item) {
+        System.out.println("item to be posted: " + item);
+        Item newItem = new Item();
+        try {
+            newItem =  itemRepository.saveAndFlush(item);
+            System.out.println("newItem: " + newItem);
+        } catch (Exception e) {
+            System.out.println("Error updating item: " + e);
+        }
+        return newItem;
+    }
+
+    public void deletedItem(Integer id) {
+        try {
+             itemRepository.deleteById(id);
+        } catch (Exception e) {
+            System.out.println("Error deleting item: " + e);
+        }
     }
 }
