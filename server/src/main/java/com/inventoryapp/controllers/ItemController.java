@@ -56,6 +56,8 @@ public class ItemController {
     @PutMapping("/items/{id}")
     public ResponseEntity<ItemDto> updateItem(@PathVariable Integer id, @RequestBody ItemDto itemDto) {
 
+        //client sends json without id. we have to get it from the path variable here and set manually.
+        itemDto.setId(id);
         Item itemRequest = modelMapper.map(itemDto, Item.class);
         Item item = itemService.saveItem(itemRequest);
 

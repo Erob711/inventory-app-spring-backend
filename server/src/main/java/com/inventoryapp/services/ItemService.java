@@ -31,7 +31,7 @@ public class ItemService {
         System.out.println("item to be posted: " + item);
         Item newItem = new Item();
         try {
-            newItem =  itemRepository.saveAndFlush(item);
+            newItem =  itemRepository.save(item);
             System.out.println("newItem: " + newItem);
         } catch (Exception e) {
             System.out.println("Error updating item: " + e);
