@@ -1,7 +1,8 @@
 BEGIN TRANSACTION;
 
-DROP TABLE IF EXISTS items;
-
+DROP TABLE IF EXISTS user_table_item;
+DROP TABLE IF EXISTS item;
+DROP TABLE IF EXISTS user_table;
 
 CREATE TABLE item (
 	id SERIAL,
@@ -14,9 +15,9 @@ CREATE TABLE item (
 );
 
 CREATE TABLE user_table (
-	id SERIAL,
+    id SERIAL,
 	username VARCHAR(100) NOT NULL UNIQUE,
-	password VARCHAR(500) NOT NULL
+	password VARCHAR(500) NOT NULL,
+	CONSTRAINT PK_user_tablel PRIMARY KEY (id)
 );
-
 COMMIT TRANSACTION;

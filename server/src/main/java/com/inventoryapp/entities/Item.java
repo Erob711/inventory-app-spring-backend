@@ -1,13 +1,12 @@
 package com.inventoryapp.entities;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -15,6 +14,8 @@ import lombok.NoArgsConstructor;
 @Entity(name="item")
 public class Item {
 
+    @ManyToMany(mappedBy = "usersItems")
+    private List<User> users;
 
     @Id
     @GeneratedValue
