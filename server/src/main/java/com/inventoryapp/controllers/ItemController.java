@@ -8,6 +8,7 @@ import com.inventoryapp.services.ItemService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,37 +30,43 @@ public class ItemController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/items")
     public List<ItemDto> getAll() {
-//        List<Item> allItems = itemService.listAll();
-//        return allItems;
         return itemService.listAll().stream().map(item ->
                 modelMapper.map(item, ItemDto.class)).collect(Collectors.toList());
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("items/{id}")
-    public Item getById(@PathVariable int id) {
+    public ResponseEntity<ItemDto> getById(@PathVariable int id) {
         Item item = itemService.findById(id);
-        return item;
+        ItemDto itemResponse = modelMapper.map(item, ItemDto.class);
+        return ResponseEntity.ok().body(itemResponse);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/items")
-    public Item createItem(@RequestBody Item item) {
-        Item newItem = itemService.saveItem(item);
-        return newItem;
+    public ResponseEntity<ItemDto> createItem(@RequestBody ItemDto itemDto) {
+        Item itemRequest = modelMapper.map(itemDto, Item.class);
+        Item item = itemService.saveItem(itemRequest);
+        ItemDto itemResponse = modelMapper.map(item, ItemDto.class);
+
+        return new ResponseEntity<ItemDto>(itemResponse, HttpStatus.CREATED);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/items/{id}")
-    public Item updateItem(@PathVariable Integer id) {
-        Item itemToUpdate = itemService.findById(id);
-        Item updatedItem = itemService.saveItem(itemToUpdate);
-        return updatedItem;
+    public ResponseEntity<ItemDto> updateItem(@PathVariable Integer id, @RequestBody ItemDto itemDto) {
+
+        Item itemRequest = modelMapper.map(itemDto, Item.class);
+        Item item = itemService.saveItem(itemRequest);
+
+        ItemDto itemResponse = modelMapper.map(item, ItemDto.class);
+
+        return ResponseEntity.ok().body(itemResponse);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/items/{id}")
     public void deleteItem(@PathVariable Integer id) {
-        itemService.deletedItem(id);
+        itemService.deleteItem(id);
     }
 }

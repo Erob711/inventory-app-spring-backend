@@ -39,7 +39,7 @@ public class ItemService {
         return newItem;
     }
 
-    public void deletedItem(Integer id) {
+    public void deleteItem(Integer id) {
         try {
              itemRepository.deleteById(id);
         } catch (Exception e) {
