@@ -5,7 +5,7 @@ RUN gradle build
 
 FROM openjdk:19-jdk
 COPY --from=BUILD build/libs/server-0.0.1-SNAPSHOT.jar app.jar
-EXPOSE 3000
+EXPOSE 8080
 ENTRYPOINT ["java","-jar","app.jar"]
 
 
