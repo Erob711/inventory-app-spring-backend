@@ -1,9 +1,9 @@
 package com.inventoryapp.controllers;
 
-import com.inventoryapp.dtos.ItemDto;
 import com.inventoryapp.dtos.UserDto;
 import com.inventoryapp.entities.Item;
 import com.inventoryapp.entities.User;
+import com.inventoryapp.entities.Items;
 import com.inventoryapp.repositories.UserRepository;
 import com.inventoryapp.services.ItemService;
 import com.inventoryapp.services.UserService;
@@ -48,7 +48,7 @@ public class UserController {
     @GetMapping("/users/{username}")
     public ResponseEntity<UserDto> getOne(@PathVariable String username) {
         ResponseEntity<UserDto> userDto = null;
-        List<UserDto> users =  userService.listAll().stream().map(user ->
+        List<UserDto> users = userService.listAll().stream().map(user ->
                 modelMapper.map(user, UserDto.class)).collect(Collectors.toList());
 
         for (int i = 0; i < users.size(); i++) {
@@ -80,6 +80,11 @@ public class UserController {
 
         try {
             if (removeOrAdd.equals("add")) {
+
+                if (userItems.contains(item)) {
+                    System.out.printf("Attempted to add the same item twice;");
+                    return;
+                }
                 userItems.add(item);
                 userRepository.save(user);
 
@@ -93,5 +98,39 @@ public class UserController {
     }
 
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/users/")
+    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
+        User userRequest = modelMapper.map(userDto, User.class);
+        User user = userService.saveUser(userRequest);
+        UserDto userResponse = modelMapper.map(user, UserDto.class);
+        return new ResponseEntity<UserDto>(userResponse, HttpStatus.CREATED);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/users/{id}")
+    public void deleteUser(@PathVariable Integer id) {
+        userService.deleteUser(id);
+    }
+
+//    @ResponseStatus(HttpStatus.OK)
+//    @GetMapping("/users/cart/{id}")
+//    public List<ItemDto> getUsersItems(@PathVariable Integer id) {
+//        User user = userService.findById(id);
+//        return user.getUsersItems().stream().map(item ->
+//                modelMapper.map(item, ItemDto.class)).collect(Collectors.toList());
+//    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/users/cart/{id}")
+    public Items getUsersItems(@PathVariable Integer id) {
+
+        User user = userService.findById(id);
+        List<Item> itemsFromUser = user.getUsersItems();
+
+        Items items = new Items();
+        items.setItems(itemsFromUser);
+        return items;
+    }
 
 }

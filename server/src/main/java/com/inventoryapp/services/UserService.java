@@ -25,4 +25,23 @@ public class UserService {
 //        Item itemFound = itemRepository.findById(id);
         return user;
     }
+
+
+    public User saveUser(User user) {
+        User newUser = new User();
+        try {
+            newUser =  userRepository.save(user);
+        } catch (Exception e) {
+            System.out.println("Error updating user: " + e);
+        }
+        return newUser;
+    }
+
+    public void deleteUser(Integer id) {
+        try {
+            userRepository.deleteById(id);
+        } catch (Exception e) {
+            System.out.println("Error deleting item: " + e);
+        }
+    }
 }
