@@ -1,7 +1,11 @@
 package com.inventoryapp.controllers;
 
+import com.inventoryapp.dtos.ItemDto;
 import com.inventoryapp.dtos.UserDto;
+import com.inventoryapp.entities.Item;
 import com.inventoryapp.entities.User;
+import com.inventoryapp.repositories.UserRepository;
+import com.inventoryapp.services.ItemService;
 import com.inventoryapp.services.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +25,14 @@ public class UserController {
     private ModelMapper modelMapper;
 
     private final UserService userService;
+    private final ItemService itemService;
+    private final UserRepository userRepository;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, ItemService itemService,
+                          UserRepository userRepository) {
         this.userService = userService;
+        this.itemService = itemService;
+        this.userRepository = userRepository;
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -52,8 +61,36 @@ public class UserController {
     }
 
 
-//    @ResponseStatus(HttpStatus.OK)
-//    @GetMapping("/users/cart/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/users/getById/{id}")
+    public ResponseEntity<UserDto> getById(@PathVariable Integer id) {
+        User user = userService.findById(id);
+        UserDto userResponse = modelMapper.map(user, UserDto.class);
+        return ResponseEntity.ok().body(userResponse);
+    }
+
+
+    //should refactor. Not sure of best practices for this type of action. also should return something helpful when method called
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/users/editCart/{removeOrAdd}/{userId}/{itemId}")
+    public void addItemToUser(@PathVariable String removeOrAdd, @PathVariable Integer userId, @PathVariable Integer itemId) {
+        User user = userService.findById(userId);
+        Item item = itemService.findById(itemId);
+        List<Item> userItems = user.getUsersItems();
+
+        try {
+            if (removeOrAdd.equals("add")) {
+                userItems.add(item);
+                userRepository.save(user);
+
+            } else {
+                userItems.remove(item);
+                userRepository.save(user);
+            }
+        } catch (Exception e) {
+            System.out.print("Oops, something went wrong: " + e);
+        }
+    }
 
 
 

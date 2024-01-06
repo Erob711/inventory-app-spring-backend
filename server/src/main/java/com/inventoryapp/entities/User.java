@@ -33,6 +33,14 @@ public class User {
     @Column(name="password")
     private String password;
 
+    public List<Item> getUsersItems() {
+        return usersItems;
+    }
+
+    public void setUsersItems(List<Item> usersItems) {
+        this.usersItems = usersItems;
+    }
+
     public Integer getId() {
         return id;
     }
