@@ -20,4 +20,60 @@ INSERT INTO public.item(
 	  'https://fakestoreapi.com/img/71-3HjGNDUL._AC_SY879._SX._UX._SY._UY_.jpg');
 
 
+INSERT INTO public.item(
+	name, price, description, category, image)
+	VALUES (
+	  'Mens Cotton Jacket',
+	  55.99,
+	  'great outerwear jackets for Spring/Autumn/Winter, suitable for many occasions, such as working, hiking, camping, mountain/rock climbing, cycling, traveling or other outdoors. Good gift choice for you or your family member. A warm hearted love to Father, husband or son in this thanksgiving or Christmas Day.',
+	  E'men\'s clothing',
+	  'https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg');
+
+INSERT INTO public.item(
+	name, price, description, category, image)
+	VALUES (
+	  '"Mens Casual Slim Fit',
+	  15.99,
+      'The color could be slightly different between on the screen and in practice. / Please note that body builds vary by person, therefore, detailed size information should be reviewed below on the product description.',
+	  E'men\'s clothing',
+	  'https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg');
+
+INSERT INTO public.item(
+	name, price, description, category, image)
+	VALUES (
+	  E'John Hardy Women\'s Legends Naga Gold & Silver Dragon Station Chain Bracelet ',
+	  695,
+	  E'From our Legends Collection, the Naga was inspired by the mythical water dragon that protects the ocean\'s pearl. Wear facing inward to be bestowed with love and abundance, or outward for protection.',
+	  'jewelery',
+	  'https://fakestoreapi.com/img/71pWzhdJNwL._AC_UL640_QL65_ML3_.jpg');
+
+
+INSERT INTO public.item(
+	name, price, description, category, image)
+	VALUES (
+	  'Solid Gold Petite Micropave',
+	  168,
+	  'Satisfaction Guaranteed. Return or exchange any order within 30 days.Designed and sold by Hafeez Center in the United States. Satisfaction Guaranteed. Return or exchange any order within 30 days.',
+	  'jewelery',
+	  'https://fakestoreapi.com/img/61sbMiUnoGL._AC_UL640_QL65_ML3_.jpg');
+
+
+INSERT INTO public.item(
+	name, price, description, category, image)
+	VALUES (
+	  'WD 2TB Elements Portable External Hard Drive - USB 3.0 ',
+	  64,
+	  E'USB 3.0 and USB 2.0 Compatibility Fast data transfers Improve PC Performance High Capacity; Compatibility Formatted NTFS for Windows 10, Windows 8.1, Windows 7; Reformatting may be required for other operating systems; Compatibility may vary depending on user\’s hardware configuration and operating system',
+	  'electronics',
+	  'https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg');
+
+INSERT INTO public.item(
+	name, price, description, category, image)
+	VALUES (
+	  E'Lock and Love Women\'s Removable Hooded Faux Leather Moto Biker Jacket',
+	  29.95,
+	  '100% POLYURETHANE(shell) 100% POLYESTER(lining) 75% POLYESTER 25% COTTON (SWEATER), Faux leather material for style and comfort / 2 pockets of front, 2-For-One Hooded denim style faux leather jacket, Button detail on waist / Detail stitching at sides, HAND WASH ONLY / DO NOT BLEACH / LINE DRY / DO NOT IRON',
+	  E'women\'s clothing',
+	  'https://fakestoreapi.com/img/81XH0e8fefL._AC_UY879_.jpg');
+
 COMMIT TRANSACTION;

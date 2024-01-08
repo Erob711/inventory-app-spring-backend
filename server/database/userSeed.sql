@@ -2,11 +2,18 @@ BEGIN TRANSACTION;
 
 INSERT INTO public.user_table(
 	username, password)
-	VALUES ('user1', '123');
+	VALUES ('chuzbo', '123');
 
 INSERT INTO public.user_table(
 	username, password)
-	VALUES ('user2', '321');
+	VALUES ('eric2', '123');
 
+INSERT INTO public.user_table(
+	username, password)
+	VALUES ('lizzy_set', '123');
+
+INSERT INTO public.user_table(
+    username, password)
+    VALUES ('christ0', '123');
 
 COMMIT TRANSACTION;
