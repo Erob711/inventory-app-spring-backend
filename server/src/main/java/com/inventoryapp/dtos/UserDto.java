@@ -1,6 +1,8 @@
 package com.inventoryapp.dtos;
 
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Data
@@ -8,8 +10,10 @@ public class UserDto {
 
     private Integer id;
 
+    @NotBlank(message="username cannot be blank")
     private String username;
 
+    @Size(min=3, message="password must be at least 3 characters in length")
     private String password;
 
 

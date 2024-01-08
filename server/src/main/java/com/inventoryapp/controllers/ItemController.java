@@ -5,12 +5,14 @@ package com.inventoryapp.controllers;
 import com.inventoryapp.dtos.ItemDto;
 import com.inventoryapp.entities.Item;
 import com.inventoryapp.services.ItemService;
+
+
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,7 +46,7 @@ public class ItemController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/items")
-    public ResponseEntity<ItemDto> createItem(@RequestBody ItemDto itemDto) {
+    public ResponseEntity<ItemDto> createItem(@Valid @RequestBody ItemDto itemDto) {
         Item itemRequest = modelMapper.map(itemDto, Item.class);
         Item item = itemService.saveItem(itemRequest);
         ItemDto itemResponse = modelMapper.map(item, ItemDto.class);

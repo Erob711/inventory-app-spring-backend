@@ -7,6 +7,7 @@ import com.inventoryapp.entities.Items;
 import com.inventoryapp.repositories.UserRepository;
 import com.inventoryapp.services.ItemService;
 import com.inventoryapp.services.UserService;
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -100,7 +101,7 @@ public class UserController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/users/")
-    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
+    public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {
         User userRequest = modelMapper.map(userDto, User.class);
         User user = userService.saveUser(userRequest);
         UserDto userResponse = modelMapper.map(user, UserDto.class);

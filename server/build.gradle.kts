@@ -22,8 +22,10 @@ dependencies {
     api(libs.org.springframework.boot.spring.boot.starter.web)
     implementation("org.springframework.data:spring-data-jpa:3.2.1")
     implementation("org.modelmapper:modelmapper:3.1.1")
+    implementation("org.springframework.boot:spring-boot-starter-validation:3.2.1")
     api(libs.org.hibernate.orm.hibernate.core)
     implementation("org.projectlombok:lombok:1.18.22")
+    testImplementation("junit:junit:4.13.1")
     runtimeOnly(libs.org.springframework.boot.spring.boot.devtools)
     runtimeOnly(libs.org.postgresql.postgresql)
     testImplementation(libs.org.springframework.boot.spring.boot.starter.test)
@@ -33,7 +35,7 @@ dependencies {
 group = "com.inventory-app"
 version = "0.0.1-SNAPSHOT"
 description = "inventory-app"
-java.sourceCompatibility = JavaVersion.VERSION_1_8
+//java.sourceCompatibility = JavaVersion.VERSION_17
 
 publishing {
     publications.create<MavenPublication>("maven") {
@@ -48,3 +50,4 @@ tasks.withType<JavaCompile>() {
 tasks.withType<Javadoc>() {
     options.encoding = "UTF-8"
 }
+
