@@ -24,12 +24,16 @@ dependencies {
     implementation("org.modelmapper:modelmapper:3.1.1")
     implementation("org.springframework.boot:spring-boot-starter-validation:3.2.1")
     api(libs.org.hibernate.orm.hibernate.core)
-    implementation("org.projectlombok:lombok:1.18.22")
-    testImplementation("junit:junit:4.13.1")
+    implementation("org.projectlombok:lombok:1.18.26")
+    testImplementation("junit:junit:4.13.2")
     runtimeOnly(libs.org.springframework.boot.spring.boot.devtools)
     runtimeOnly(libs.org.postgresql.postgresql)
     testImplementation(libs.org.springframework.boot.spring.boot.starter.test)
     testImplementation(libs.org.springframework.security.spring.security.test)
+    testImplementation("org.mockito:mockito-core:5.2.0")
+    testImplementation("org.mockito:mockito-inline:5.2.0")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
+    testImplementation("org.mockito:mockito-junit-jupiter:5.2.0")
 }
 
 group = "com.inventory-app"

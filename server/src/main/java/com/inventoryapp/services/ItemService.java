@@ -15,11 +15,16 @@ public class ItemService {
     @Autowired
     private ItemRepository itemRepository;
 
+    public ItemService() {
+
+    }
+
     public List<Item> listAll() {
         return itemRepository.findAll();
     }
 
     public Item findById(int id) {
+        if (id == 0) throw new IllegalArgumentException("Item id cannot be zero");
         System.out.printf("id is: " + id);
         Item item = itemRepository.getReferenceById(id);
 //        Item itemFound = itemRepository.findById(id);
