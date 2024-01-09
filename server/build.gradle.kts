@@ -8,6 +8,7 @@ plugins {
     `java-library`
     `maven-publish`
     id("org.springframework.boot") version "3.2.1"
+    id("io.spring.dependency-management") version "1.1.4"
 }
 
 repositories {
@@ -20,12 +21,12 @@ repositories {
 dependencies {
     api(libs.org.springframework.boot.spring.boot.starter.data.jdbc)
     api(libs.org.springframework.boot.spring.boot.starter.web)
-    implementation("org.springframework.data:spring-data-jpa:3.2.1")
-    implementation("org.modelmapper:modelmapper:3.1.1")
-    implementation("org.springframework.boot:spring-boot-starter-validation:3.2.1")
+    implementation("org.springframework.data:spring-data-jpa")
+    implementation("org.modelmapper:modelmapper:2.1.1")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
     api(libs.org.hibernate.orm.hibernate.core)
-    implementation("org.projectlombok:lombok:1.18.26")
-    testImplementation("junit:junit:4.13.2")
+    implementation("org.projectlombok:lombok")
+    testImplementation("junit:junit")
     runtimeOnly(libs.org.springframework.boot.spring.boot.devtools)
     runtimeOnly(libs.org.postgresql.postgresql)
     testImplementation(libs.org.springframework.boot.spring.boot.starter.test)
