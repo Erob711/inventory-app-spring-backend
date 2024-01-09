@@ -2,6 +2,8 @@ package com.inventoryapp.entities;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,8 +30,10 @@ public class User {
     private Integer id;
 
     @Column(name="username")
+    @NotBlank(message="username cannot be blank")
     private String username;
 
+    @Size(min=3, message="password must be at least 3 characters in length")
     @Column(name="password")
     private String password;
 

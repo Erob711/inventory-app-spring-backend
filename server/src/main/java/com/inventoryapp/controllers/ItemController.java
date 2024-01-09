@@ -39,6 +39,7 @@ public class ItemController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("items/{id}")
     public ResponseEntity<ItemDto> getById(@PathVariable int id) {
+        if (id == 0) throw new IllegalArgumentException("Item id cannot be zero");
         Item item = itemService.findById(id);
         ItemDto itemResponse = modelMapper.map(item, ItemDto.class);
         return ResponseEntity.ok().body(itemResponse);

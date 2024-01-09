@@ -2,6 +2,8 @@ package com.inventoryapp.entities;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,7 +15,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name="item")
+@Entity(name = "item")
 public class Item {
 
     @ManyToMany(mappedBy = "usersItems")
@@ -23,18 +25,23 @@ public class Item {
     @GeneratedValue
     private Integer id;
 
+
+    @Size(min = 2, message = " Name of item must have minimum of 2 characters")
     @Column(name = "name")
     private String name;
 
     @Column(name = "price")
     private double price;
 
+    @NotBlank(message = "Description cannot be blank")
     @Column(name = "description")
     private String description;
 
+    @NotBlank(message = "Category cannot be blank")
     @Column(name = "category")
     private String category;
 
+    @NotBlank(message = "Image cannot be blank")
     @Column(name = "image")
     private String image;
 

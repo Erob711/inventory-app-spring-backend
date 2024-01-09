@@ -1,5 +1,6 @@
 package com.inventoryapp;
 
+import com.inventoryapp.controllers.ItemController;
 import com.inventoryapp.entities.Item;
 import com.inventoryapp.repositories.ItemRepository;
 import com.inventoryapp.services.ItemService;
@@ -11,6 +12,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -31,8 +33,14 @@ public class ItemTests {
     ItemRepository itemRepository;
 
     @Autowired
-    @InjectMocks
+    private ModelMapper modelMapper;
+
+    @Autowired
     ItemService itemService;
+
+    @Autowired
+    @InjectMocks
+    ItemController itemController;
     Item item = new Item();
 //    Item builderItem = item.builder().id(1).category("hello");
     @Before
@@ -47,8 +55,8 @@ public class ItemTests {
 
     @Test(expected = IllegalArgumentException.class)
     public void findById_given_zero_throws_exception() {
-        when(itemService.findById(0)).thenThrow(IllegalArgumentException.class);
-        assertThrows(IllegalArgumentException.class, () -> itemService.findById(0));
+        when(itemController.getById(0)).thenThrow(IllegalArgumentException.class);
+        assertThrows(IllegalArgumentException.class, () -> itemController.getById(0));
     }
 
 
@@ -60,6 +68,14 @@ public class ItemTests {
 //       assertEquals(itemService.saveItem(item), item);
         assertEquals(item, createdItem);
 
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void saveItem_throws_exception_if_fields_left_blank() {
+        item.setName("");
+        when(itemService.saveItem(item)).thenThrow(IllegalArgumentException.class);
+
+        assertThrows(IllegalArgumentException.class, () -> itemService.saveItem(item));
     }
 
 

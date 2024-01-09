@@ -48,6 +48,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/users/{username}")
     public ResponseEntity<UserDto> getOne(@PathVariable String username) {
+        if (username == null) throw new IllegalArgumentException("empty username");
         ResponseEntity<UserDto> userDto = null;
         List<UserDto> users = userService.listAll().stream().map(user ->
                 modelMapper.map(user, UserDto.class)).collect(Collectors.toList());
@@ -65,8 +66,13 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/users/getById/{id}")
     public ResponseEntity<UserDto> getById(@PathVariable Integer id) {
-        User user = userService.findById(id);
-        UserDto userResponse = modelMapper.map(user, UserDto.class);
+        UserDto userResponse;
+        try {
+            User user = userService.findById(id);
+            userResponse = modelMapper.map(user, UserDto.class);
+        } catch (Exception e) {
+            throw e;
+        }
         return ResponseEntity.ok().body(userResponse);
     }
 
@@ -100,12 +106,16 @@ public class UserController {
 
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/users/")
-    public ResponseEntity<UserDto> createUser(@Valid @RequestBody UserDto userDto) {
-        User userRequest = modelMapper.map(userDto, User.class);
-        User user = userService.saveUser(userRequest);
-        UserDto userResponse = modelMapper.map(user, UserDto.class);
-        return new ResponseEntity<UserDto>(userResponse, HttpStatus.CREATED);
+    @PostMapping("/users")
+    public ResponseEntity<UserDto> createUser( @RequestBody UserDto userDto) {
+        try {
+            User userRequest = modelMapper.map(userDto, User.class);
+            User user = userService.saveUser(userRequest);
+            UserDto userResponse = modelMapper.map(user, UserDto.class);
+            return new ResponseEntity<UserDto>(userResponse, HttpStatus.CREATED);
+        } catch (Exception e) {
+            throw e;
+        }
     }
 
     @ResponseStatus(HttpStatus.OK)
@@ -114,13 +124,6 @@ public class UserController {
         userService.deleteUser(id);
     }
 
-//    @ResponseStatus(HttpStatus.OK)
-//    @GetMapping("/users/cart/{id}")
-//    public List<ItemDto> getUsersItems(@PathVariable Integer id) {
-//        User user = userService.findById(id);
-//        return user.getUsersItems().stream().map(item ->
-//                modelMapper.map(item, ItemDto.class)).collect(Collectors.toList());
-//    }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/users/cart/{id}")
