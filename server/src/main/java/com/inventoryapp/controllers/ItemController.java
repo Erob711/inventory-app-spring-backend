@@ -46,7 +46,7 @@ public class ItemController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/items")
+    @PostMapping("/items/")
     public ResponseEntity<ItemDto> createItem(@Valid @RequestBody ItemDto itemDto) {
         Item itemRequest = modelMapper.map(itemDto, Item.class);
         Item item = itemService.saveItem(itemRequest);
