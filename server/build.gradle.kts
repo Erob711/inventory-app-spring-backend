@@ -27,6 +27,7 @@ dependencies {
     api(libs.org.hibernate.orm.hibernate.core)
     implementation("org.projectlombok:lombok")
     testImplementation("junit:junit")
+    testImplementation("com.h2database:h2")
     runtimeOnly(libs.org.springframework.boot.spring.boot.devtools)
     runtimeOnly(libs.org.postgresql.postgresql)
     testImplementation(libs.org.springframework.boot.spring.boot.starter.test)
@@ -55,4 +56,5 @@ tasks.withType<JavaCompile>() {
 tasks.withType<Javadoc>() {
     options.encoding = "UTF-8"
 }
+
 

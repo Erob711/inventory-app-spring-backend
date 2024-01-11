@@ -1,7 +1,5 @@
 package com.inventoryapp.services;
 
-
-import com.inventoryapp.entities.Item;
 import com.inventoryapp.entities.User;
 import com.inventoryapp.repositories.UserRepository;
 import jakarta.validation.*;
